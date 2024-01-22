@@ -1,0 +1,177 @@
+{{> navbar}}
+
+  {{#ifEquals user.dataValues.rol "admin"}}
+  <section class="container card-container">
+  {{#if heading}}
+    <h1 class="text-center">{{heading}}</h1>
+  {{else}}
+    <h1 class="text-center">Últimas publicaciones</h1>
+  {{/if}}
+  {{#if posts}}
+    <div class="d-flex justify-content-center mb-3 btn-create-container">
+      <button class="btn btn-secondary btn-create-post" data-bs-toggle="modal" data-bs-target="#contenido-modal">Crear</button>
+    
+    </div>
+  {{#each posts}}
+    <div class="card w-50 mb-2 m-auto" data-id="{{this.id}}">
+        
+        <div class="card-body">
+            <h3 class="card-title">{{this.titulo}}</h3>
+            <p class="card-text card-subtitle">{{this.user.nombre}} {{this.user.apellido}}</p>
+            <img src="/uploads/{{this.user_id}}/{{this.imagen_url}}" alt="" class="card-img-top img-fluid">
+            <p class="card-text card-description">
+                {{this.descripcion}}
+            </p>
+        </div>
+        <p></p>
+        <div class="card-footer">
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between align-center">
+                    <label for="contenido-{{this.id}}" class="mb-0 form-label">Escribe un comentario</label>
+                    <div>
+                      <button class="btn p-0 btn-enviar-comentario">Enviar</button>
+                      <button class="btn p-0 btn-actualizar-comentario">Actualizar</button>
+                    </div>
+                  </div>
+                    <textarea  class="form-control" id="contenido-{{this.id}}" rows="2"></textarea>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button class="btn comentarios">{{this.comments}} comentarios</button>
+                  
+                  <div>
+                    <button class="btn btn-editar-post" data-bs-toggle="modal" data-bs-target="#contenido-modal">Editar</button>
+                    <button class="btn btn-eliminar-post">Eliminar</button>
+                  </div>
+                </div>
+              
+        </div>
+        <div class="container-comments bg-white rounded-lg mt-2"></div>
+    </div>
+    
+  {{/each}}
+  <div class="d-flex justify-content-between mb-5 w-50 m-auto prev-next-container">
+    <button class="btn btn-secondary">Anterior</button>
+    <button class="btn btn-secondary">Siguiente</button>
+  </div>
+  {{else}}
+    <h3 class="text-center">No hay publicaciones. Crea una ahora.</h3>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-secondary btn-create-post" data-bs-toggle="modal" data-bs-target="#contenido-modal">Crear</button>
+    </div>
+  {{/if}}
+  </section>
+  {{/ifEquals}}
+  
+
+
+  {{#ifEquals user.dataValues.rol "user"}}
+  <section class="container card-container">
+  {{#if heading}}
+    <h1 class="text-center">{{heading}}</h1>
+  {{else}}
+    <h1 class="text-center">Últimas publicaciones</h1>
+  {{/if}}
+  {{#if posts}}
+    <div class="d-flex justify-content-center mb-3 btn-create-container">
+        <button class="btn btn-secondary btn-create-post" data-bs-toggle="modal" data-bs-target="#contenido-modal">Crear</button>
+    </div>
+  {{#each posts}}
+    <div class="card w-50 mb-2 m-auto" data-id="{{this.id}}">
+        
+        <div class="card-body">
+            <h3 class="card-title">{{this.titulo}}</h3>
+            <p class="card-text card-subtitle">{{this.user.nombre}} {{this.user.apellido}}</p>
+            <img src="/uploads/{{this.user_id}}/{{this.imagen_url}}" alt="" class="card-img-top img-fluid">
+            <p class="card-text card-description">
+                {{this.descripcion}}
+            </p>
+        </div>
+       
+        <div class="card-footer">
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between align-center">
+                    <label for="contenido-{{this.id}}" class="mb-0 form-label">Escribe un comentario</label>
+                    <div>
+                      <button class="btn p-0 btn-enviar-comentario">Enviar</button>
+                      <button class="btn p-0 btn-actualizar-comentario">Actualizar</button>
+                    </div>
+
+                  </div>
+                    <textarea  class="form-control" id="contenido-{{this.id}}" rows="2"></textarea>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                  <button class="btn comentarios">{{this.comments}} comentarios</button>
+                  {{#ifEquals user_id userId }}
+                    <div>
+                      <button class="btn btn-editar-post" data-bs-toggle="modal" data-bs-target="#contenido-modal">Editar</button>
+                      <button class="btn btn-eliminar-post">Eliminar</button>
+                    </div>
+                  {{/ifEquals}}
+                </div>
+               
+        </div>
+        <div class="container-comments bg-white rounded-lg mt-2"></div>
+    </div>
+    
+{{/each}}
+  <div class="d-flex justify-content-between mb-5 w-50 m-auto prev-next-container">
+    <button class="btn btn-secondary btn-prev">Anterior</button>
+    <button class="btn btn-secondary btn-next">Siguiente</button>
+  </div>
+{{else}}
+<h3 class="text-center">No hay publicaciones. Crea una ahora.</h3>
+<div class="d-flex justify-content-center">
+    <button class="btn btn-secondary btn-create-post" data-bs-toggle="modal" data-bs-target="#contenido-modal">Crear</button>
+</div>
+{{/if}}
+</section>
+{{/ifEquals}}
+
+
+    <!-- modal para creacion o actualizacion de publicación -->
+<div class="modal fade" id="contenido-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               
+                <div class="modal-header">
+                    <h2 class="modal-title">Editar publicacion</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="modal-form" id="modal">
+                      <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="titulo"
+                          placeholder="Elija un título para su publicación"
+                          name="titulo"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="descripcion" class="mb-0 form-label">Describe tu publicación</label>
+                        <textarea  class="form-control" id="descripcion" rows="2" name="descripcion"></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label for="archivo" class="form-label">Elija una imagen</label>
+                        <input type="file" class="form-control" id="archivo" name="archivo" required>
+                      </div>
+                       <button class="btn btn-primary btn-post">Publicar</button>
+
+                       <button class="btn btn-primary btn-update">Actualizar</button>
+                       
+                    </form>
+                   
+                </div>
+                <div class="modal-footer">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="/js/posts.js" type="module"></script>

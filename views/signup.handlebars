@@ -1,0 +1,79 @@
+<section class="container mt-4">
+  <div>
+    <h1 class="text-center mb-5">Crea tu cuenta de Share Pic</h1>
+  </div>
+  <div class="w-75 mt-4 m-auto mb-5">
+    <div class="card mb-3">
+      <div class="card-header">
+        Formulario de registro
+      </div>
+
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              class="form-control mb-2"
+              id="nombre"
+              placeholder="Ingrese su nombre"
+              name="nombre"
+            
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Apellido</label>
+            <input
+              type="text"
+              class="form-control mb-2"
+              id="apellido"
+              placeholder="Ingrese su apellido"
+              name="apellido"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control mb-2"
+              id="email"
+              placeholder="Ingrese su email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control mb-2"
+              id="password"
+              placeholder="Password"
+              name="password"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="passwordConfirm">Confirmar Password</label>
+            <input
+              type="password"
+              class="form-control mb-2"
+              id="passwordConfirm"
+              placeholder="Confirme su password"
+              name="passwordConfirm"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary mt-2">Registarse</button>
+        </form>
+
+      </div>
+    </div>
+    
+  </div>
+</section>
+<!-- Footer -->
+	{{> footer}}
+<script src="/js/signup.js" type="module"></script>

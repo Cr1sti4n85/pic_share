@@ -1,0 +1,88 @@
+{{> navbar}}
+<section>
+  <div>
+    <h1 class="text-center">Información de usuario</h1>
+  </div>
+  
+    <div class="w-50 mt-4 m-auto">
+     <div class="card mb-3">
+      <div class="card-header">
+        *Para actualizar la información, es necesario rellenar todos los campos
+      </div>
+
+      <div class="card-body">
+        <form class="info-general">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              placeholder="Ingrese su nombre"
+              name="nombre"
+              value={{user.dataValues.nombre}}
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellido"
+              placeholder="Ingrese su apellido"
+              name="apellido"
+              value={{user.dataValues.apellido}}
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Ingrese su email"
+              name="email"
+              value={{user.dataValues.email}}
+              required
+            />
+          </div>
+          
+          <button type="submit" class="btn btn-primary mt-2">Actualizar información</button>
+        </form>
+        <form class="info-password">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Ingrese nuevo password"
+              name="password"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="passwordConfirm">Confirmar Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="passwordConfirm"
+              placeholder="Confirme su password"
+              name="passwordConfirm"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary mt-2">Actualizar password</button>
+
+        </form>
+
+      </div>
+    </div>
+     
+   </div>
+ 
+  
+</section>
+<script type="module" src="/js/profile.js"></script>

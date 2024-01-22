@@ -1,0 +1,56 @@
+<header>
+  <h1 class="h1 text-center pt-5 pb-5">Share Pic App.</h1>
+</header>
+<div class="container pb-3">
+  <div class="row">
+    <div class="col-lg-8 col-md-6 col-sm-12">
+      
+      <img src="/img/travelling.jpg" alt="woman travelling" class="img-fluid">
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 border">
+
+      <div class="container mt-4">
+        <div class="card">
+          <div class="card-header">
+            Inicia sesión
+          </div>
+
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Email"
+                  name="email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Password"
+                  name="password"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary mt-2">Login</button>
+              <p class="signup-link pt-2">¿No tienes cuenta? Inscríbete
+                <a href="/signup">acá</a></p>
+            </form>
+
+          </div>
+        </div>
+        {{!-- {{#if message}}
+          <h4 class="alert alert-danger mt-4">{{message}}</h4>
+        {{/if}} --}}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+	{{> footer}}
+<script src="/js/login.js" type="module"></script>
