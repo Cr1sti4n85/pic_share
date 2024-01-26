@@ -14,9 +14,11 @@ import {
   getAndUpdateComment,
   deleteComment,
 } from "./comments.js";
+import { setActive } from "./helpers/activePage.js";
 
 const signupForm = document.querySelector(".signup-form");
 const loginForm = document.querySelector(".login-form");
+const navbar = document.querySelector(".navbar");
 const btnComentarios = document.querySelector(".comentarios");
 const modalForm = document.querySelector("#modal");
 const infoForm = document.querySelector(".info-general");
@@ -26,6 +28,10 @@ const prevNextContainer = document.querySelector(".prev-next-container");
 const cardContainer = document.querySelector(".card-container");
 const btnPost = document.querySelector(".btn-post");
 const btnUpdate = document.querySelector(".btn-update");
+
+if (navbar) {
+  setActive(navbar);
+}
 
 if (infoForm) {
   updateInfo(infoForm);
