@@ -11,9 +11,10 @@ export const uploadImage = (files, id, imgUrl = null) => {
     const extension = splitName.at(-1).toLowerCase();
 
     if (!validExtensions.includes(extension)) {
-      return reject(
-        `La extensión ${extension} no es permitida. Extensiones válidas: ${validExtensions}`
-      );
+      return reject({
+        status: "failed",
+        msg: `La extensión ${extension} no es permitida. Extensiones válidas: ${validExtensions}`,
+      });
     }
 
     // borrar imagen previa del server si es que existe
@@ -30,7 +31,10 @@ export const uploadImage = (files, id, imgUrl = null) => {
 
     archivo.mv(uploadPath, (err) => {
       if (err) {
-        return reject(err);
+        return reject({
+          status: "failed",
+          msg: `No se pudo guardar la imagen`,
+        });
       }
     });
 

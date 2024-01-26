@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import Post from "../models/Post.js";
 import Comment from "../models/Comment.js";
 import Users from "../models/User.js";
@@ -29,12 +27,13 @@ export const createPost = async (req, res, next) => {
 
     res.status(200).json({
       newPost,
-      msg: "Archivo creado exitosamente",
+      msg: "Publicación creada exitosamente",
     });
   } catch (error) {
-    next(
-      new AppError(error || "No se puede procesar la solicitud", 400, "failed")
-    );
+    if (error.status === "failed") {
+      return next(new AppError(error.msg, 400, error.status));
+    }
+    next(new AppError("No se puede procesar la solicitud"));
   }
 };
 
@@ -166,7 +165,6 @@ export const updatePost = async (req, res, next) => {
     await post.update({ titulo, descripcion, imagen_url: nombreArchivo });
     res.sendStatus(204);
   } catch (error) {
-    console.log(error);
     next(
       new AppError(error || "No se pudo realizar la solicitud", 400, "failed")
     );

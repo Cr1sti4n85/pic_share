@@ -6,7 +6,7 @@ export default class Post extends Model {}
 Post.init(
   {
     titulo: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(100),
       allowNull: false,
       validate: {
         max: {
